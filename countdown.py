@@ -2,6 +2,7 @@
 #
 # A simple generator function
 
+
 def countdown(n):
     print "Counting down from", n
     while n > 0:
