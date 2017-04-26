@@ -10,7 +10,7 @@ class EventHandler(xml.sax.ContentHandler):
         self.target = target
 
     def startElement(self, name, attrs):
-        self.target.send(('start', (name, attrs._attrs)))
+        self.target.send(('start', (name, attrs)))
 
     def characters(self, text):
         self.target.send(('text', text))
