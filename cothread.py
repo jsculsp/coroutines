@@ -7,9 +7,11 @@ from threading import Thread
 from Queue import Queue
 from coroutine import *
 
+
 @coroutine
 def threaded(target):
     messages = Queue()
+
     def run_target():
         while True:
             item = messages.get()
@@ -35,9 +37,9 @@ if __name__ == '__main__':
 
     xml.sax.parse("allroutes.xml", EventHandler(
                     buses_to_dicts(
-                    threaded(
-                         filter_on_field("route","22",
-                         filter_on_field("direction","North Bound",
+                        threaded(
+                         filter_on_field("route", "22",
+                         filter_on_field("direction", "North Bound",
                          bus_locations()))
-                    ))))
-                 
+                                ))))
+
