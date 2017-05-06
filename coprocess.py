@@ -5,17 +5,19 @@
 import cPickle as pickle
 from coroutine import *
 
+
 @coroutine
 def sendto(f):
     try:
         while True:
             item = (yield)
-            pickle.dump(item,f)
+            pickle.dump(item, f)
             f.flush()
     except StopIteration:
         f.close()
 
-def recvfrom(f,target):
+
+def recvfrom(f, target):
     try:
         while True:
             item = pickle.load(f)
@@ -31,10 +33,8 @@ if __name__ == '__main__':
     from buses import *
 
     import subprocess
-    p = subprocess.Popen(['python','busproc.py'],
+    p = subprocess.Popen(['python', 'busproc.py'],
                          stdin=subprocess.PIPE)
 
     xml.sax.parse("allroutes.xml",
-                  EventHandler(
-                          buses_to_dicts(
-                          sendto(p.stdin))))
+                  EventHandler(buses_to_dicts(sendto(p.stdin))))

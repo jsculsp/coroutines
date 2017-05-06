@@ -20,6 +20,7 @@ def threaded(target):
                 return
             else:
                 target.send(item)
+
     Thread(target=run_target).start()
     try:
         while True:
